@@ -14,4 +14,7 @@ const (
 	ErrorAuthTokenTimeout  = 3006
 	ErrorUploadFail        = 3007
 	ErrorSendEmail         = 3008
+
+	// product Error
+	ErrorProductImgUpload = 4001
 )

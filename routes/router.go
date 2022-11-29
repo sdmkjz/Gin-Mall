@@ -28,6 +28,8 @@ func NewRouter() *gin.Engine {
 			authed.POST("user/sending-email", api.SendEmail)
 			authed.POST("user/valid-email", api.ValidEmail)
 			authed.POST("money", api.ShowMoney)
+			// 商品操作
+			authed.POST("product", api.CreateProduct)
 		}
 	}
 	return r

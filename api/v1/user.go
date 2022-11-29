@@ -14,7 +14,8 @@ func UserRegister(c *gin.Context) {
 		res := userRegister.Register(c.Request.Context())
 		c.JSON(http.StatusOK, res)
 	} else {
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, ErrorResponse(err))
+		utils.LogrusObj.Infoln(err)
 	}
 }
 
@@ -24,7 +25,7 @@ func UserLogin(c *gin.Context) {
 		res := userLogin.Login(c.Request.Context())
 		c.JSON(http.StatusOK, res)
 	} else {
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, ErrorResponse(err))
 	}
 }
 
@@ -35,7 +36,7 @@ func UserUpdate(c *gin.Context) {
 		res := userUpdate.Update(c.Request.Context(), claims.ID)
 		c.JSON(http.StatusOK, res)
 	} else {
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, ErrorResponse(err))
 	}
 }
 
@@ -61,7 +62,7 @@ func SendEmail(c *gin.Context) {
 		c.JSON(http.StatusOK, res)
 	} else {
 		log.Println(err)
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, ErrorResponse(err))
 	}
 }
 
@@ -72,7 +73,7 @@ func ValidEmail(c *gin.Context) {
 		c.JSON(http.StatusOK, res)
 	} else {
 		log.Println(err)
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, ErrorResponse(err))
 	}
 }
 
@@ -84,7 +85,7 @@ func ShowMoney(c *gin.Context) {
 		c.JSON(http.StatusOK, res)
 	} else {
 		log.Println(err)
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, ErrorResponse(err))
 	}
 
 }

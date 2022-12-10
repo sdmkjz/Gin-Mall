@@ -17,4 +17,7 @@ const (
 
 	// product Error
 	ErrorProductImgUpload = 4001
+
+	// favorite Error
+	ErrorFavoriteExist = 5001
 )

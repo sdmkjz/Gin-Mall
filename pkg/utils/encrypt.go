@@ -24,7 +24,7 @@ func NewEncryption() *Encryption {
 
 // PadPwd 填充密码长度
 func PadPwd(srcByte []byte, blockSize int) []byte {
-	padNum := blockSize - len(srcByte)&blockSize
+	padNum := blockSize - len(srcByte)%blockSize
 	ret := bytes.Repeat([]byte{byte(padNum)}, padNum)
 	srcByte = append(srcByte, ret...)
 	return srcByte
@@ -38,7 +38,7 @@ func (k *Encryption) AesEncoding(src string) string {
 		return src
 	}
 	// 密码填充
-	NewSrcByte := PadPwd(srcByte, block.BlockSize()) // 字节长度不够 需要填充
+	NewSrcByte := PadPwd(srcByte, block.BlockSize()) //由于字节长度不够，所以要进行字节的填充
 	dst := make([]byte, len(NewSrcByte))
 	block.Encrypt(dst, NewSrcByte)
 	// base64 编码
